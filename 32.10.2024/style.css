@@ -1,0 +1,27 @@
+.btn:hover{
+    font-size: 45px;
+    background-color: yellow;
+}
+.btn:active{
+    background-color: green;
+}
+.btn{
+    background-color: red;
+}
+  input:focus{
+    font-size: 45px;
+    background-color: blue;
+    color: aliceblue;
+  }  
+  .link{
+    font-size: 50px;
+    text-decoration: none;
+    color: black;
+  }
+  input{
+    background-color: red;
+  }
+  input:active{
+    transform: scale(1.05);
+  }
+
