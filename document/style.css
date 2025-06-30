@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.box{
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 20px;
+    color: green;
+    text-align: center;
+    font-family: cursive;
+    border: 1px solid grey;
+}
+
+.box img{
+    width: 100%;
+}
