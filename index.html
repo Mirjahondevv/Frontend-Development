@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Turtle Heart in HTML</title>
+    <style>
+        /* CSS: Fonni qora qilish va canvasni markazga qo'yish */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="heartCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Ekran o'lchamini sozlash
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        
+        // Python kodidagi 20 koeffitsienti
+        const scale = 18; 
+
+        // Python funksiyalari (hearta va heartb)
+        function hearta(k) {
+            return 15 * Math.pow(Math.sin(k), 3);
+        }
+
+        function heartb(k) {
+            return -(13 * Math.cos(k) - 5 * Math.cos(2 * k) - 2 * Math.cos(3 * k) - Math.cos(4 * k));
+        }
+
+        let i = 0;
+        const maxI = 6000; // Python dagi range(6000)
+        
+        ctx.strokeStyle = "#f73487"; // Python dagi rang
+        ctx.lineWidth = 0.5; // Tiniq nurlar chiqishi uchun ingichka chiziq
+
+        function draw() {
+            if (i < maxI) {
+                // Har bir qadamda 5 ta chiziq chizamiz (tezroq chiqishi uchun)
+                for (let step = 0; step < 10; step++) {
+                    if (i >= maxI) break;
+
+                    const x = hearta(i) * scale;
+                    const y = heartb(i) * scale;
+
+                    // Python dagi: goto(hearta(i)*20, heartb(i)*20)
+                    // Keyin: goto(0, 0)
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY); // Markazdan boshlash (0,0)
+                    ctx.lineTo(centerX + x, centerY + y); // Tashqariga chiziq
+                    ctx.stroke();
+
+                    i += 0.1; 
+                }
+                requestAnimationFrame(draw);
+            }
+        }
+
+        // Animatsiyani boshlash
+        draw();
+
+        // Ekran o'zgarganda yangilash
+        window.onresize = () => {
+            location.reload();
+        };
+    </script>
+</body>
+</html>
